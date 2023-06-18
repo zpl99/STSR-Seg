@@ -1,8 +1,9 @@
+"""
+Code is from https://github.com/leftthomas/ESPCN
+"""
 import torch.nn as nn
 import torch.nn.functional as F
 import torch
-import Nets.pac as pac
-import numpy as np
 
 
 class ESPC(nn.Module):

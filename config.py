@@ -3,9 +3,9 @@
 # Config is used to set dataset path for training and testing
 ##############################
 
-from __future__ import absolute_import # 绝对引用
-from __future__ import division # 精确除法 3/4=0.75 而不是0
-from __future__ import print_function # 将python 2.0 的print替换成python 3.0的
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import torch

@@ -111,6 +111,7 @@ def main_epoch(args):
         lr_loss = 0.0
         lr_ce_loss = 0.0
         pbar.update()
+        # to avoid memory leaks
         LR_HRLoader_iter = iter(LR_HRLoader)
         for i, LR_LRbatch in enumerate(LR_LRLoader):
             try:
@@ -130,7 +131,7 @@ def main_epoch(args):
             hr_gt = LR_HRbatch["label"].detach().cpu().numpy()
             hr_pre = torch.sigmoid(hr_pre)
             hr_pre = hr_pre.detach().cpu().numpy()
-            hr_pre = np.where(hr_pre > 0.5, 1, 0)
+            hr_pre = np.where(hr_pre > 0.5, 1, 0) # the threshold for binarization is 0.5
             evaluator.add_batch(hr_gt, hr_pre)
 
             total_loss = total_loss.sum()

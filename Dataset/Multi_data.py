@@ -181,7 +181,7 @@ class TrainLR_LR_wTC(data.Dataset):
         image_tc_rgb = colorjitter(image_tc_rgb)
         image_tc = torch.cat([image_tc_rgb, image_tc_nir], dim=0)
         image_tc = normalize(image_tc)
-        
+
         image_rgb = image[:3, :, :]
         image_nir = image[3, :, :].unsqueeze(0)
         image_rgb = colorjitter(image_rgb)

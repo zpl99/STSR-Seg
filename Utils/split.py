@@ -49,7 +49,7 @@ class EMPatches(object):
             # windowOverlapX = int(math.floor(windowSizeX * overlapPercent))
             # windowOverlapY = int(math.floor(windowSizeY * overlapPercent))
             windowOverlapX = 4
-            windowOverlapY = 4 # 固定重叠4个pix
+            windowOverlapY = 4
             stepSizeX = windowSizeX - windowOverlapX
             stepSizeY = windowSizeY - windowOverlapY
         else:

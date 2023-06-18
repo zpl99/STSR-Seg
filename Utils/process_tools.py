@@ -30,6 +30,7 @@ class SortNum(object):
     def sort_num(self):
         return sorted(self.lst, key=self.str2int)
 
+
 def crop_one_image_with_padding(single_image_path, save_folder_path, patch_size):
     image = io.imread(single_image_path)
     patches, indices = em.extract_patches(image, patchsize=patch_size, overlap=0.1)
@@ -50,6 +51,7 @@ def composite_patch_to_one_image(patch_image_folder, indices):
     image = np.where(image > 0.5, 255, 0)
     return image
 
+
 def composite_patch_to_one_image_for_PossibilityMap(patch_image_folder, indices):
     filename = glob(patch_image_folder + "/*.npy")
     filename = SortNum(filename).sort_num()
@@ -59,6 +61,7 @@ def composite_patch_to_one_image_for_PossibilityMap(patch_image_folder, indices)
         patch_list.append(pre)
     image = em.merge_patches(patch_list, indices, mode="max")
     return image
+
 
 def project_image(source_image_path, target_image_path, target_save_path, targetH, targetW, channel, scale=4,
                   lucc=None):
@@ -101,10 +104,9 @@ def project_image(source_image_path, target_image_path, target_save_path, target
         'crs': 'EPSG:4326',  # '+proj=latlong'
         'transform': target_transform,
         'dtype': rasterio.uint8,
-        'compress': 'LZW'
+        'compress': 'LZW'  # to compress
     }
 
     with rasterio.open(target_save_path, 'w', **profile) as f:
         f.write(target_image)
     # print("The image is projected successfully!")
-

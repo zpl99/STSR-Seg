@@ -140,11 +140,10 @@ def get_period(dates):
 
 
 if __name__ == '__main__':
-    # For users in mainland China, you need to use a VPN and configure a proxy here, because google services are not
+    # For users in mainland China, they need to use a VPN and configure a proxy here, because google services are not
     # accessible in China
-    # For other regions, you can comment out the following
-    os.environ['HTTP_PROXY'] = 'http://127.0.0.1:7890'
-    os.environ['HTTPS_PROXY'] = 'http://127.0.0.1:7890'
+    # os.environ['HTTP_PROXY'] = 'http://127.0.0.1:7890'
+    # os.environ['HTTPS_PROXY'] = 'http://127.0.0.1:7890'
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--save_path', type=str, default=r"D:\try", help="Save path")

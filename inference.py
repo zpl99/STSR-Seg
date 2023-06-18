@@ -91,12 +91,12 @@ if __name__ == "__main__":
     for patch in patches:
         base_name = os.path.basename(patch)
         base_name_wo_suffix = base_name.split(".")[0]
-        # Sacrifice storage space for more memory
+        # sacrifice storage space for more memory (this is really weird, but we have limited server memory)
         if not os.path.exists(args.tempPath + base_name_wo_suffix + "_subpatch_folder"):
             os.makedirs(args.tempPath + base_name_wo_suffix + "_subpatch_folder")
         if not os.path.exists(args.tempPath + base_name_wo_suffix + "_outpredictions_folder"):
             os.makedirs(args.tempPath + base_name_wo_suffix + "_outpredictions_folder")
-
+        # split the image to small patches and get the index according to the positions
         indices = process_tools.crop_one_image_with_padding(patch,
                                                             args.tempPath + base_name_wo_suffix + "_subpatch_folder",
                                                             64)
@@ -105,22 +105,23 @@ if __name__ == "__main__":
 
         image = skimage.io.imread(patch)
         image_h, image_w = image.shape[0], image.shape[1]
-        del image
-
+        del image  # due to limited server memory
+        # composite parches into one
         composited_image = process_tools.composite_patch_to_one_image(
             args.tempPath + base_name_wo_suffix + "_outpredictions_folder", indices=indices)
-
-        s2_tag = base_name_wo_suffix.split("_")[-1]
+        # use lucc data to do masking
         lucc_path = os.path.join(lucc_paths, base_name)
         lucc = skimage.io.imread(lucc_path)
         lucc = np.nan_to_num(lucc)
         lucc = skimage.transform.resize(lucc, composited_image.shape)
         lucc = np.where(lucc >= 0.2, 1, 0)
+
         process_tools.project_image(patch,
                                     composited_image,
                                     os.path.join(args.desPath, f"{base_name_wo_suffix}_pre.tif"),
                                     image_h * 4, image_w * 4, 1, lucc=lucc)
+        # clean temporary files
         shutil.rmtree(args.tempPath + base_name_wo_suffix + "_subpatch_folder")
         shutil.rmtree(args.tempPath + base_name_wo_suffix + "_outpredictions_folder")
         pbar.update()
-        del image_h, image_w, composited_image, base_name_wo_suffix
+        del image_h, image_w, composited_image, base_name_wo_suffix  # due to limited server memory

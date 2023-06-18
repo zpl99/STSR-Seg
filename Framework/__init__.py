@@ -9,8 +9,9 @@ from Nets.RRDBNet import RRDBNet
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
 def setup_framework(args):
-    if args.framework == "lr_lr_and_lr_hr":
+    if args.framework == "lr_lr_and_lr_hr":  # only use sg loss
         if args.sr == "ESPC":
             sr = ESPC
         elif args.sr == "RRDB":
@@ -26,7 +27,7 @@ def setup_framework(args):
             raise ValueError
         framework = multi_data_source.Multi_data_train_framework(sr, ss)
         return framework
-    if args.framework == "lr_lr_and_lr_hr_wTC":
+    if args.framework == "lr_lr_and_lr_hr_wTC": # use both tc los and sg loss
         if args.sr == "ESPC":
             sr = ESPC
         elif args.sr == "RRDB":
@@ -58,11 +59,12 @@ def setup_framework(args):
         framework = inference_framework.inference_framework(sr, ss)
         return framework
 
+
 if __name__ == "__main__":
     model = torch.load(r"/mnt/data/lzp/STSRSeg/MultiDataEDSRUnet-model-15.ckpt")
     sr = EDSR
     ss = U_Net
-    framework = inference_framework.inference_framework(sr,ss)
+    framework = inference_framework.inference_framework(sr, ss)
     framework = Nets.wrap_network_in_dataparallel(framework, False)
     pretrained_dict = {k: v for k, v in model.items() if k in framework.state_dict()}
 
