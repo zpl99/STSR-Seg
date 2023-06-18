@@ -1,13 +1,13 @@
 import numpy as np
-import math
 
 class EMPatches(object):
-
+    """
+    https://github.com/Mr-TalhaIlyas/EMPatches
+    """
     def __init__(self):
         pass
 
     def extract_patches(self, img, patchsize, overlap=None, stride=None):
-        # overlap参数没用，因为我固定只重叠10个pix
         '''
         Parameters
         ----------
