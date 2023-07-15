@@ -1,0 +1,15 @@
+scipy
+tensorboardX>=1.6
+torchvision
+tqdm
+numpy
+opencv-python
+opencv-contrib-python
+scikit-image
+scikit-learn
+scipy
+imagecodecs-lite
+geemap
+gdal
+rasterio
+
