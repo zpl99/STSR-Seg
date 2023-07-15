@@ -33,17 +33,17 @@ __C.DATASET.LR_LR = "Misc/lrFiles.csv"
 ```
 python main.py
 ```
-TC loss is more demanding on computational resources and can also be turned off, if you choose to turn it off you can run the following code
+TC loss is more demanding on computational resources and can also be turned off, if you choose to turn it off you can run the following code for model training
 ```
 python main.py --framework lr_lr_and_lr_hr --dataset MultiData
 ```
-After training, you can find several checkpoints in your project path:
+After training, you can find several checkpoints in your project path, for example:
 ```
 Project path
-  ├── MultiData_wTCEDSRUnet-model-10.ckpt
-  ├── MultiData_wTCEDSRUnet-model-20.ckpt
+  ├── MultiDataEDSRUnet-model-10.ckpt
+  ├── MultiDataEDSRUnet-model-20.ckpt
   ├── ......
-  ├── MultiData_wTCEDSRUnet-model-best.ckpt
+  ├── MultiDataEDSRUnet-model-best.ckpt
 ```
 ### Step 3: inference to achieve building rooftop extraction
 1. Download Sentinel-2 data and the corresponding Dynamic World data (built), save them under [your s2 path] and [your dynamicworld path], making sure that the name of the Sentinel-2 image matches the name of the Dynamic World data. For example, you can prepare your data as the following structure
@@ -57,8 +57,8 @@ Project path
     ├── China0002.tif
     ......
 ```
-2. Run the following code. [your save path] is where you would like to put your predictions, and [your temporary files path] is the path where the temporary file is saved.
+2. Run the following code. [your save path] is where you would like to put your predictions, [your temporary files path] is the path where the temporary file is saved, [your checkpoint path] is the path of the checkpoint you would like to use.
 ```
-python inference.py --s2Path [your s2 path] --luccPath [your dynamicworld path] --desPath [your save path] --tempPath [your temporary files path]
+python inference.py --s2Path [your s2 path] --luccPath [your dynamicworld path] --desPath [your save path] --tempPath [your temporary files path] --checkpointPath [your checkpoint path]
 ```
 ### Citation
