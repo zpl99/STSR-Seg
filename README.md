@@ -35,13 +35,10 @@ python main.py --framework lr_lr_and_lr_hr --dataset MultiData
 After training, you can find several checkpoints in your project path:
 ```
 Project path
-  ├── Dataset
-  ├── Download
-  ......
-  MultiData_wTCEDSRUnet-model-10.ckpt
-  MultiData_wTCEDSRUnet-model-20.ckpt
-  ......
-  MultiData_wTCEDSRUnet-model-best.ckpt
+  ├── MultiData_wTCEDSRUnet-model-10.ckpt
+  ├── MultiData_wTCEDSRUnet-model-20.ckpt
+  ├── ......
+  ├── MultiData_wTCEDSRUnet-model-best.ckpt
 ```
 ### Step 3: inference to achieve building rooftop extraction
 1. Download Sentinel-2 data and the corresponding Dynamic World data (built), save them under [your s2 path] and [your dynamicworld path], making sure that the name of the Sentinel-2 image matches the name of the Dynamic World data. For example, you can prepare your data as the following structure
