@@ -56,3 +56,4 @@ Project path
 ```
 python inference.py --s2Path [your s2 path] --luccPath [your dynamicworld path] --desPath [your save path] --tempPath [your temporary files path]
 ```
+### Citation
