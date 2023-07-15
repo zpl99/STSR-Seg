@@ -16,7 +16,7 @@ python Download/s2andDynamicWorld_download.py --save_path [your lr save path]
 ```
 python Misc/prepareLR_LR.py --data_path [your lr save path]
 ```
-3. Download high-resolution training data from [google drive]() and unzip it to your specified path, e.g., [your hr save path]
+3. Download high-resolution training data from [google drive](https://drive.google.com/file/d/1VUY2NTJDDa-Byjue41lyhp7ExEvY90Bd/view?usp=sharing) and unzip it to your specified path, e.g., [your hr save path]
 ### Step 2: train the model
 1. Open config.py, edit the following entry and save it
 ```
