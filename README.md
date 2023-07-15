@@ -5,8 +5,13 @@ The code of the Spatio-Temporal aware Super-Resolution SEGmentation framework (S
 The page is still being organized, the paper related to the method is being reviewed by the journal "Earth System Science Data (ESSD)", and we will release all the source code in the near future.
 
 ### Requirements
-1. Please install PyTorch=1.7 following the [official instructions](https://pytorch.org/), install earth-engine following the [official instructions](https://developers.google.com/earth-engine/guides/python_install). For users in China mainland, you can refer to Zhihu to install earth-engine and solve the problems that may occur during the installation process [Zhihu](https://zhuanlan.zhihu.com/p/29186942)
-2. Install dependencies: pip install -r requirements.txt
+1. Use conda create vitrual environment and activate it
+```
+conda create -n [yourenvname] python=3.8
+conda activate [yourenvname] 
+```
+2. Install PyTorch=1.7 following the [official instructions](https://pytorch.org/), install earth-engine following the [official instructions](https://developers.google.com/earth-engine/guides/python_install). For users in China mainland, you can refer to Zhihu to install earth-engine and solve the problems that may occur during the installation process [Zhihu](https://zhuanlan.zhihu.com/p/29186942)
+3. Install dependencies: pip install -r requirements.txt
 ### Step 1: prepare the training data
 1. Run the following command to download low-resolution training data and save it to your specified path, e.g., [your lr save path]
 ```
