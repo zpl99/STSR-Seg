@@ -30,7 +30,7 @@ def get_args():
                         default="lr_lr_and_lr_hr_wTC")
     parser.add_argument("--num_classes", type=int, default=1)
     parser.add_argument("--epochs", type=int, default=400)
-    parser.add_argument("--save_epochs", type=int, default=1)
+    parser.add_argument("--save_epochs", type=int, default=10)
     parser.add_argument("--valid_epochs", type=int, default=1)
     parser.add_argument("--lr", type=float, default=0.00015)
     parser.add_argument("--save_path", type=str, default="./model.ckpt")
