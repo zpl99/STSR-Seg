@@ -32,4 +32,30 @@ TC loss is more demanding on computational resources and can also be turned off,
 ```
 python main.py --framework lr_lr_and_lr_hr --dataset MultiData
 ```
-### Step 3: inference to achieve large-scale building rooftop extraction
+After training, you can find several checkpoints in your project path:
+```
+Project path
+  ├── Dataset
+  ├── Download
+  ......
+  MultiData_wTCEDSRUnet-model-10.ckpt
+  MultiData_wTCEDSRUnet-model-20.ckpt
+  ......
+  MultiData_wTCEDSRUnet-model-best.ckpt
+```
+### Step 3: inference to achieve building rooftop extraction
+1. Download Sentinel-2 data and the corresponding Dynamic World data (built), save them under [your s2 path] and [your dynamicworld path], making sure that the name of the Sentinel-2 image matches the name of the Dynamic World data. For example, you can prepare your data as the following structure
+```
+[your s2 path]
+    ├── China0001.tif
+    ├── China0002.tif
+    ......
+[your dynamicworld path]
+    ├── China0001.tif
+    ├── China0002.tif
+    ......
+```
+2. Run the following code. [your save path] is where you would like to put your predictions, and [your temporary files path] is the path where the temporary file is saved.
+```
+python inference.py --s2Path [your s2 path] --luccPath [your dynamicworld path] --desPath [your save path] --tempPath [your temporary files path]
+```
