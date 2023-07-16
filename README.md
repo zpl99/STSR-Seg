@@ -5,7 +5,7 @@ The code of the Spatio-Temporal aware Super-Resolution SEGmentation framework (S
 The page is still being organized, the paper related to the method is being reviewed by the journal "Earth System Science Data (ESSD)", and we will release all the source code in the near future.
 
 ### Requirements
-1. Use conda create vitrual environment and activate it
+1. Use conda to create vitrual environment and activate it
 ```
 conda create -n [yourenvname] python=3.8
 conda activate [yourenvname] 
