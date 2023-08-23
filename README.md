@@ -2,8 +2,6 @@
 
 The code of the Spatiotemporal aware Super-Resolution SEGmentation framework (STSR-Seg). The STSR-Seg is utilized to produce the China Building Rooftop Area (CBRA) dataset. 
 
-The page is still being organized, the paper related to the method is being reviewed by the journal "Earth System Science Data (ESSD)".
-
 ### Requirements
 1. Use conda to create vitrual environment and activate it
 ```
@@ -62,3 +60,6 @@ Project path
 python inference.py --s2Path [your s2 path] --luccPath [your dynamicworld path] --desPath [your save path] --tempPath [your temporary files path] --checkpointPath [your checkpoint path]
 ```
 ### Citation
+Liu, Z., Tang, H., Feng, L., & Lyu, S. (2023). China Building Rooftop Area: the first multi-annual (2016–2021) and high-resolution (2.5 m) building rooftop area dataset in China derived with super-resolution segmentation from Sentinel-2 imagery. Earth System Science Data, 15(8), 3547-3572. DOI: 10.5194/essd-15-3547-2023. (Q1 TOP, IF:11.4)
+![Uploading image.png…]()
+
