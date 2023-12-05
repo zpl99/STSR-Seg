@@ -312,8 +312,7 @@ def resnet50(pretrained=True, **kwargs):
     """
     model = ResNet(Bottleneck, [3, 4, 6, 3], **kwargs)
     if pretrained:
-        # model.load_state_dict(torch.load("./pretrained_models/resnet50-deep.pth", map_location='cpu'))
-        model.load_state_dict(torch.load(r"/mnt/data/lzp/STSRSeg/pretrained_models/resnet50-deep.pth", map_location='cpu'))
+        model.load_state_dict(torch.load(r"./Pretrained_models/resnet50-deep.pth", map_location='cpu'))
     return model
 
 
