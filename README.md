@@ -10,7 +10,7 @@ conda activate [yourenvname]
 ```
 2. Install PyTorch=1.7 following the [official instructions](https://pytorch.org/), install earth-engine following the [official instructions](https://developers.google.com/earth-engine/guides/python_install). For users in China mainland, you can refer to Zhihu to install earth-engine and solve the problems that may occur during the installation process [Zhihu](https://zhuanlan.zhihu.com/p/29186942)
 3. Install dependencies: pip install -r requirements.txt
-### Step 1: prepare the training data
+### Step 1: prepare the training data and the validation data
 1. Run the following command to download low-resolution training data and save it to your specified path, e.g., [your lr save path]
 ```
 python Download/s2andDynamicWorld_download.py --save_path [your lr save path]
