@@ -8,7 +8,7 @@ import torch
 import numpy as np
 from PIL import ImageFilter
 
-"""用于语义分割数据的数据增广"""
+"""Data augmentation for semantic segmentation data"""
 
 
 class GaussianBlur(object):
@@ -54,7 +54,7 @@ def moco_transforms(image):
 
 
 def roate(image, mask):
-    """图像随机旋转，概率 50%"""
+    """The image rotates randomly with a 50% probability"""
     if random.random() > 0.5:
         angle = random.randint(-20, 20)
         image = TF.rotate(image, angle)
@@ -63,7 +63,7 @@ def roate(image, mask):
 
 
 def vflipAndhflip(image, mask):
-    """垂直反转"""
+    """vertical reverse"""
     if random.random() > 0.5:
         if random.random() > 0.5:
             image = TF.vflip(image)
@@ -75,7 +75,7 @@ def vflipAndhflip(image, mask):
 
 
 def vflipAndhflip2(image, lr_mask, lr_gradient, hr_mask, hr_gradient):
-    """垂直反转"""
+    """vertical reverse"""
     if random.random() > 0.5:
         if random.random() > 0.5:
             image = TF.vflip(image)
@@ -172,8 +172,8 @@ def data_transform_pipline_multi_data_framework(lr_image, lr_label, hr_label):
 
 def data_transform_pipline_robust_framework(image, mask, pipline=None, size=None):
     """
-
-    加了TP Positive的数据增强，返回数据包含image,mask（用来监督训练），image_positive(用来TP对比学习）
+    Data enhancement of TP Positive is added.
+    The returned data includes image,mask (used to supervise training) and image_positive(used for TP comparison learning).
     """
     image = torch.from_numpy(image.transpose((2, 0, 1)))
     # print(image.shape)
@@ -214,7 +214,7 @@ def data_transform_pipline_robust_framework(image, mask, pipline=None, size=None
 
 def data_transform_pipline_semi_supervised(image, mask, pipline=None, size=None):
     """
-    因为数据格式等原因，因此做了一些修改
+    Some changes were made because of the data format and other reasons
     """
     # image = torch.from_numpy(image)
     # print(image.shape)

@@ -19,32 +19,28 @@ torch.backends.cudnn.benchmark = True
 def get_args():
     parser = argparse.ArgumentParser(description='Super Resolution and Semantic Segmentation')
     parser.add_argument("--dataset", type=str, default="MultiData_wTC")
-    parser.add_argument("--hr_batch_size", type=int, default=32, help="Batch size for high resolution (hr) data")
-    parser.add_argument("--lr_batch_size", type=int, default=48, help="Batch size for low resolution (lr) data")
-    parser.add_argument("--num_workers", type=int, default=16, help="larger, faster")
+    parser.add_argument("--hr_batch_size", type=int, default=16)
+    parser.add_argument("--lr_batch_size", type=int, default=32)
+    parser.add_argument("--num_workers", type=int, default=16)
     parser.add_argument("--sr", type=str,
-                        default="EDSR",help="The choice of super resolution network, including ESPC, EDSR and RRDB")
+                        default="EDSR")
     parser.add_argument("--ss", type=str,
-                        default="Unet", help="The choice of semantic segmentation network, only support Unet")
+                        default="Unet")
     parser.add_argument("--framework", type=str,
                         default="lr_lr_and_lr_hr_wTC")
     parser.add_argument("--num_classes", type=int, default=1)
-    parser.add_argument("--epochs", type=int, default=400, help="The number of training epoch")
-    parser.add_argument("--save_epochs", type=int, default=10, help="Control saving frequency")
-    parser.add_argument("--valid_epochs", type=int, default=1, help="Control validating frequency")
-    parser.add_argument("--lr", type=float, default=0.00015, help="Learning rate")
+    parser.add_argument("--epochs", type=int, default=400)
+    parser.add_argument("--save_epochs", type=int, default=1)
+    parser.add_argument("--valid_epochs", type=int, default=1)
+    parser.add_argument("--lr", type=float, default=0.00015)
     parser.add_argument("--save_path", type=str, default="./model.ckpt")
     parser.add_argument("--resume", type=str, default="")
     args = parser.parse_args()
     args.save_path = "./" + args.dataset + args.sr + args.ss + "-model"
     return args
 
-
-
+# In order to reconstruct the results
 def same_seeds(seed):
-    """
-    In order to reconstruct the results
-    """
     torch.manual_seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed(seed)
@@ -93,13 +89,13 @@ def main_epoch(args):
         framework.load_state_dict(torch.load(args.resume))
     print(f"{args.framework} build successful! sr is {args.sr}, and ss is {args.ss} ")
     total_epochs = args.epochs
-    total_steps = len(LR_LRLoader)
+    total_steps = len(LR_HRLoader)
     pbar = tqdm(total=total_epochs, desc="Train Mode", unit="epoch")
     optimizer = optim.AdamW(framework.parameters(), lr=args.lr)
     print(f"optimizer is AdmW, learning rate is {args.lr}")
-    evaluator = metrics.Evaluator(num_class=2)  # building and background
+    evaluator = metrics.Evaluator(num_class=2)  # 前景和背景两类
     writer = SummaryWriter(
-        comment=args.dataset + args.sr + args.ss + "_" + args.framework)  # save at run/time-args.networks
+        comment=args.dataset + args.sr + args.ss + "_" + args.framework)  # save at run/日期时间-args.networks
     best_accuracy = -1
     """
     Training phases
@@ -111,14 +107,13 @@ def main_epoch(args):
         lr_loss = 0.0
         lr_ce_loss = 0.0
         pbar.update()
-        # to avoid memory leaks
-        LR_HRLoader_iter = iter(LR_HRLoader)
-        for i, LR_LRbatch in enumerate(LR_LRLoader):
+        LR_LRLoader_iter = iter(LR_LRLoader)
+        for i, LR_HRbatch in enumerate(LR_HRLoader):
             try:
-                LR_HRbatch = next(LR_HRLoader_iter)
+                LR_LRbatch = next(LR_LRLoader_iter)
             except StopIteration:
-                LR_HRLoader_iter = iter(LR_HRLoader)
-                LR_HRbatch = next(LR_HRLoader_iter)
+                LR_LRLoader_iter = iter(LR_LRLoader)
+                LR_LRbatch = next(LR_LRLoader_iter)
 
             loss1, hr_pre = framework(LR_HRbatch, "train_hr")
             loss2 = framework(LR_LRbatch, "train_lr")
@@ -131,7 +126,7 @@ def main_epoch(args):
             hr_gt = LR_HRbatch["label"].detach().cpu().numpy()
             hr_pre = torch.sigmoid(hr_pre)
             hr_pre = hr_pre.detach().cpu().numpy()
-            hr_pre = np.where(hr_pre > 0.5, 1, 0) # the threshold for binarization is 0.5
+            hr_pre = np.where(hr_pre > 0.5, 1, 0)
             evaluator.add_batch(hr_gt, hr_pre)
 
             total_loss = total_loss.sum()
@@ -150,7 +145,6 @@ def main_epoch(args):
                 batch=f"{i}/{total_steps}",
                 loss=f"{total_loss.detach().cpu().item():.4f}",
                 epoch=epoch + 1  # ,
-                # lr = scheduler.get_lr()[0]
             )
         IoU = evaluator.IoU()
         pbar.set_postfix(
@@ -190,7 +184,6 @@ def main_epoch(args):
             torch.save(best_state_dict, args.save_path + "-best.ckpt")
             pbar.write(f"epoch {epoch + 1}, best model saved. (accuracy={best_accuracy:.4f})")
             best_state_dict = None
-        # scheduler.step()
         torch.cuda.empty_cache()
 
 
