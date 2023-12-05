@@ -1,6 +1,6 @@
 # STSR-Seg
 
-The code of the Spatiotemporal aware Super-Resolution SEGmentation framework (STSR-Seg). The STSR-Seg is utilized to produce the China Building Rooftop Area (CBRA) dataset. 
+The code of the Spatiotemporal aware Super-Resolution SEGmentation framework (STSR-Seg). The STSR-Seg is a deep learning method, utilized to produce the China Building Rooftop Area (CBRA) dataset. 
 
 ### Overvirew
 <div align="center">
