@@ -10,7 +10,7 @@ conda activate [yourenvname]
 ```
 2. Install PyTorch=1.7 following the [official instructions](https://pytorch.org/), install earth-engine following the [official instructions](https://developers.google.com/earth-engine/guides/python_install). For users in China mainland, you can refer to Zhihu to install earth-engine and solve the problems that may occur during the installation process [Zhihu](https://zhuanlan.zhihu.com/p/29186942)
 3. Install dependencies: pip install -r requirements.txt
-4. Download the pretrained backbone, and put it in
+4. Download the [pretrained Resnet-50 backbone](https://drive.google.com/file/d/1EZFEiqcMiSPDqtXOjfgKnjGsQAW0IpoD/view?usp=sharing), and put it in the "Pretrained_models" folder,  
 ```
 Project path
   |-- Dataset
