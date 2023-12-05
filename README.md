@@ -16,6 +16,7 @@ The code of the Spatiotemporal aware Super-Resolution SEGmentation framework (ST
 <img src="Images/Figure 7.jpg" width="700px"/>
 <p> The pipeline of generating predictions</p>
 </div>
+
 ### Requirements
 1. Use conda to create vitrual environment and activate it
 ```
