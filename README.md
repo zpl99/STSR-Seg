@@ -1,18 +1,32 @@
 # STSR-Seg
 
-The code of the Spatiotemporal aware Super-Resolution SEGmentation framework (STSR-Seg). The STSR-Seg is utilized to produce the China Building Rooftop Area (CBRA) dataset. 
+The code of the Spatiotemporal aware Super-Resolution SEGmentation framework (STSR-Seg). The STSR-Seg is a deep learning method, utilized to produce the China Building Rooftop Area (CBRA) dataset. 
+
+### Overvirew
+The STSR-Seg includes two modules. The former module is the super resolution, employed to upscale the Sentinel-2 imagery. The subsequent module focuses on semantic segmentation, making pixel-wised classifications on the upscaled feature.  Given the challenge of the absence of reliable reference for building rooftop distributions in China, especially in rural areas, the STSR-Seg adopts a parameter tuning strategy by using both high-resolution references (i.e., building footprints) and low-resolution references (i.e., built areas).
+<div align="center">
+<img src="Images/Figure 6.jpg" width="700px"/>
+<p> Frameworks of the STSR-Seg.</p>
+</div>
+
+After training, the trained STSR-Seg is utilized to process Sentinel-2 imagery, generating CBRA on a predefined grid in a sequential manner.
+<div align="center">
+<img src="Images/Figure 7.jpg" width="700px"/>
+<p> The pipeline of generating predictions</p>
+</div>
 
 ### Requirements
-1. Use conda to create vitrual environment and activate it
+1. Use conda to create virtual environment and activate it
 ```
 conda create -n [yourenvname] python=3.8
 conda activate [yourenvname] 
 ```
 2. Install PyTorch=1.7 following the [official instructions](https://pytorch.org/), install earth-engine following the [official instructions](https://developers.google.com/earth-engine/guides/python_install). For users in China mainland, you can refer to Zhihu to install earth-engine and solve the problems that may occur during the installation process [Zhihu](https://zhuanlan.zhihu.com/p/29186942)
-3. Install dependencies: pip install -r requirements.txt
-4. Download the [pretrained Resnet-50 backbone](https://drive.google.com/file/d/1EZFEiqcMiSPDqtXOjfgKnjGsQAW0IpoD/view?usp=sharing), and put it in the "Pretrained_models" folder,  
+3. ```git clone https://github.com/zpl99/STSR-Seg.git [PROJECT_ROOT]```
+4. Install dependencies: pip install -r requirements.txt
+5. Download the [pretrained Resnet-50 backbone](https://drive.google.com/file/d/1EZFEiqcMiSPDqtXOjfgKnjGsQAW0IpoD/view?usp=sharing), and put it in the "Pretrained_models" folder (you need to create this folder by yourself, and then put the downloaded pre-trained model into the folder),  
 ```
-Project path
+[PROJECT_ROOT]
   |-- Dataset
   |-- Download
       ......
@@ -52,7 +66,7 @@ python main.py --framework lr_lr_and_lr_hr --dataset MultiData
 ```
 After training, you can find several checkpoints in your project path, for example:
 ```
-Project path
+[PROJECT_ROOT]
   |-- MultiDataEDSRUnet-model-10.ckpt
   |-- MultiDataEDSRUnet-model-20.ckpt
   |-- ......
