@@ -15,7 +15,7 @@ conda activate [yourenvname]
 ```
 python Download/s2andDynamicWorld_download.py --save_path [your lr save path]
 ```
-2. Run the following command to prepare the low-resolution training data, and you can find a CSV file labelled "lrFiles.csv" in path ./Misc
+2. Run the following command to prepare the low-resolution training data, then you can find a CSV file labelled "lrFiles.csv" in path ./Misc
 ```
 python Misc/prepareLR_LR.py --data_path [your lr save path]
 ```
