@@ -27,9 +27,13 @@ __C.DATASET.VAL = "[your hr save path]/valData"
 __C.DATASET.LR_HR = "[your hr save path]/trainData"
 __C.DATASET.LR_LR = "Misc/lrFiles.csv"
 ```
-2. Run the following code
+2. Run the following code to train the model
 ```
 python main.py
+```
+You can see the help of the main script with
+```
+python main.py --help
 ```
 TC loss is more demanding on computational resources and can also be turned off, if you choose to turn it off you can run the following code for model training
 ```
