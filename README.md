@@ -4,9 +4,9 @@ The code of the Spatiotemporal aware Super-Resolution SEGmentation framework (ST
 ## Contents
 - [Overview](#Overview)
 - [Requirements](#Requirements)
-- [Step 1: prepare the training data and the validation data](#Step 1: prepare the training data and the validation data)
-- [Step 2: train the model](#Step 2: train the model)
-- [Step 3: inference to achieve building rooftop extraction](#Step 3: inference to achieve building rooftop extraction)
+- [Step 1: prepare the training data and the validation data](# Step 1: prepare the training data and the validation data)
+- [Step 2: train the model](# Step 2: train the model)
+- [Step 3: inference to achieve building rooftop extraction](# Step 3: inference to achieve building rooftop extraction)
 ### Overvirew
 <div align="center">
 <img src="Images/Figure 6.jpg" width="700px"/>
