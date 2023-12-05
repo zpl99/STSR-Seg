@@ -16,7 +16,7 @@ After training, the trained STSR-Seg is utilized to process Sentinel-2 imagery, 
 </div>
 
 ### Requirements
-1. Use conda to create vitrual environment and activate it
+1. Use conda to create virtual environment and activate it
 ```
 conda create -n [yourenvname] python=3.8
 conda activate [yourenvname] 
