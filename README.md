@@ -3,11 +3,13 @@
 The code of the Spatiotemporal aware Super-Resolution SEGmentation framework (STSR-Seg). The STSR-Seg is a deep learning method, utilized to produce the China Building Rooftop Area (CBRA) dataset. 
 
 ### Overvirew
-The STSR-Seg includes two modules. The former module is the super resolution, employed to upscale the Sentinel-2 imagery. The subsequent module focuses on semantic segmentation, making pixel-wised classifications on the upscaled feature.  Consider the lack of reliable reference of building rooftop in China, especially in rural area, the STSR-Seg uses both high-resolution reference (i.e., building footprint) and low-resolution reference (i.e., built area) to tune the parameter.
+The STSR-Seg includes two modules. The former module is the super resolution, employed to upscale the Sentinel-2 imagery. The subsequent module focuses on semantic segmentation, making pixel-wised classifications on the upscaled feature.  Given the challenge of the absence of reliable reference for building rooftop distributions in China, especially in rural areas, the STSR-Seg adopts a parameter tuning strategy by using both high-resolution references (i.e., building footprints) and low-resolution references (i.e., built areas).
 <div align="center">
 <img src="Images/Figure 6.jpg" width="700px"/>
 <p> Frameworks of the STSR-Seg.</p>
 </div>
+
+After training, the trained STSR-Seg is utilized to process Sentinel-2 imagery, generating CBRA on a predefined grid in a sequential manner.
 <div align="center">
 <img src="Images/Figure 7.jpg" width="700px"/>
 <p> The pipeline of generating predictions</p>
